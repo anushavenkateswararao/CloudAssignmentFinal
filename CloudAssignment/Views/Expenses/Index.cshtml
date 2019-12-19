@@ -1,0 +1,69 @@
+﻿@model IEnumerable<CloudAssignment.Models.Expens>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ReceiptDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReceiptSubmittedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReceiptAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UploadReceipt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Supervisor.SupervisorName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReceiptDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReceiptSubmittedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReceiptAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UploadReceipt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Supervisor.SupervisorName)
+        </td>
+        <td>
+          
+            @Html.ActionLink("Details", "Details", new { id=item.ReceiptNumber }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ReceiptNumber })
+        </td>
+    </tr>
+}
+
+</table>

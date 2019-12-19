@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6a9f4283da464604b9d7efbc64c6928d" Name="Diagram1">
+        <EntityTypeShape EntityType="anushaDBModel.Employee" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="anushaDBModel.Expens" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="anushaDBModel.Supervisor" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="anushaDBModel.FK__Expenses__Employ__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="anushaDBModel.FK__Superviso__Emplo__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="anushaDBModel.FK__Expenses__Superv__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="anushaDBModel.FK__Superviso__Recei__5070F446" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

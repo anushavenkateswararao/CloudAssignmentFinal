@@ -1,0 +1,64 @@
+﻿@model IEnumerable<CloudAssignment.Models.Supervisor>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SupervisorName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Approve_Reject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApproveDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Expens.Status)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SupervisorName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Approve_Reject)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApproveDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Expens.Status)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SupervisorId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SupervisorId }) |
+          
+        </td>
+    </tr>
+}
+
+</table>

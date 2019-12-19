@@ -1,0 +1,67 @@
+﻿@model CloudAssignment.Models.Supervisor
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Supervisor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SupervisorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SupervisorName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Approve_Reject)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Approve_Reject)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApproveDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApproveDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee.EmployeeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Expens.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Expens.Status)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SupervisorId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

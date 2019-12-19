@@ -1,0 +1,16 @@
+﻿@model CloudAssignment.Models.Supervisor
+@{
+    ViewBag.Title = "SupervisorHome";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>SupervisorHome</h2>
+
+
+<h3>Hello @Html.DisplayFor(model => model.SupervisorName)</h3>
+<div class="navbar-collapse collapse">
+    <ul class="nav navbar-nav">
+        <li>@Html.ActionLink("Employees", "Index", "Employees")</li>
+        <li>@Html.ActionLink("Supervisor", "Index", "Supervisor")</li>
+    </ul>
+</div>

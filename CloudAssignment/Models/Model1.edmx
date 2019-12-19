@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="anushaDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeName" Type="varchar" MaxLength="20" />
+          <Property Name="DateofBirth" Type="date" />
+          <Property Name="Dateofjoin" Type="date" />
+          <Property Name="DepartmentName" Type="varchar" MaxLength="20" />
+          <Property Name="Location" Type="varchar" MaxLength="50" />
+          <Property Name="EmailID" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Expenses">
+          <Key>
+            <PropertyRef Name="ReceiptNumber" />
+          </Key>
+          <Property Name="ReceiptNumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReceiptDate" Type="date" />
+          <Property Name="ReceiptSubmittedDate" Type="date" />
+          <Property Name="ReceiptAmount" Type="money" />
+          <Property Name="UploadReceipt" Type="varbinary(max)" />
+          <Property Name="Status" Type="varchar" MaxLength="20" />
+          <Property Name="EmployeeId" Type="int" />
+          <Property Name="SupervisorId" Type="int" />
+        </EntityType>
+        <EntityType Name="Supervisor">
+          <Key>
+            <PropertyRef Name="SupervisorId" />
+          </Key>
+          <Property Name="SupervisorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" />
+          <Property Name="ReceiptNumber" Type="int" />
+          <Property Name="SupervisorName" Type="varchar" MaxLength="20" />
+          <Property Name="Approve_Reject" Type="varchar" MaxLength="20" />
+          <Property Name="ApproveDate" Type="date" />
+          <Property Name="EmailID" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <Association Name="FK__Expenses__Employ__4BAC3F29">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Expenses" Type="Self.Expenses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="Expenses">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Expenses__Superv__5165187F">
+          <End Role="Supervisor" Type="Self.Supervisor" Multiplicity="0..1" />
+          <End Role="Expenses" Type="Self.Expenses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supervisor">
+              <PropertyRef Name="SupervisorId" />
+            </Principal>
+            <Dependent Role="Expenses">
+              <PropertyRef Name="SupervisorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Superviso__Emplo__4F7CD00D">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Supervisor" Type="Self.Supervisor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="Supervisor">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Superviso__Recei__5070F446">
+          <End Role="Expenses" Type="Self.Expenses" Multiplicity="0..1" />
+          <End Role="Supervisor" Type="Self.Supervisor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expenses">
+              <PropertyRef Name="ReceiptNumber" />
+            </Principal>
+            <Dependent Role="Supervisor">
+              <PropertyRef Name="ReceiptNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="anushaDBModelStoreContainer">
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="EMS" store:Type="Tables" />
+          <EntitySet Name="Expenses" EntityType="Self.Expenses" Schema="EMS" store:Type="Tables" />
+          <EntitySet Name="Supervisor" EntityType="Self.Supervisor" Schema="EMS" store:Type="Tables" />
+          <AssociationSet Name="FK__Expenses__Employ__4BAC3F29" Association="Self.FK__Expenses__Employ__4BAC3F29">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Expenses" EntitySet="Expenses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Expenses__Superv__5165187F" Association="Self.FK__Expenses__Superv__5165187F">
+            <End Role="Supervisor" EntitySet="Supervisor" />
+            <End Role="Expenses" EntitySet="Expenses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Superviso__Emplo__4F7CD00D" Association="Self.FK__Superviso__Emplo__4F7CD00D">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Supervisor" EntitySet="Supervisor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Superviso__Recei__5070F446" Association="Self.FK__Superviso__Recei__5070F446">
+            <End Role="Expenses" EntitySet="Expenses" />
+            <End Role="Supervisor" EntitySet="Supervisor" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="anushaDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DateofBirth" Type="DateTime" Precision="0" />
+          <Property Name="Dateofjoin" Type="DateTime" Precision="0" />
+          <Property Name="DepartmentName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailID" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Expenses" Relationship="Self.FK__Expenses__Employ__4BAC3F29" FromRole="Employee" ToRole="Expenses" />
+          <NavigationProperty Name="Supervisors" Relationship="Self.FK__Superviso__Emplo__4F7CD00D" FromRole="Employee" ToRole="Supervisor" />
+        </EntityType>
+        <EntityType Name="Expens">
+          <Key>
+            <PropertyRef Name="ReceiptNumber" />
+          </Key>
+          <Property Name="ReceiptNumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReceiptDate" Type="DateTime" Precision="0" />
+          <Property Name="ReceiptSubmittedDate" Type="DateTime" Precision="0" />
+          <Property Name="ReceiptAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="UploadReceipt" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeId" Type="Int32" />
+          <Property Name="SupervisorId" Type="Int32" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Expenses__Employ__4BAC3F29" FromRole="Expenses" ToRole="Employee" />
+          <NavigationProperty Name="Supervisor" Relationship="Self.FK__Expenses__Superv__5165187F" FromRole="Expenses" ToRole="Supervisor" />
+          <NavigationProperty Name="Supervisors" Relationship="Self.FK__Superviso__Recei__5070F446" FromRole="Expenses" ToRole="Supervisor" />
+        </EntityType>
+        <EntityType Name="Supervisor">
+          <Key>
+            <PropertyRef Name="SupervisorId" />
+          </Key>
+          <Property Name="SupervisorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="Int32" />
+          <Property Name="ReceiptNumber" Type="Int32" />
+          <Property Name="SupervisorName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Approve_Reject" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ApproveDate" Type="DateTime" Precision="0" />
+          <Property Name="EmailID" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Superviso__Emplo__4F7CD00D" FromRole="Supervisor" ToRole="Employee" />
+          <NavigationProperty Name="Expenses" Relationship="Self.FK__Expenses__Superv__5165187F" FromRole="Supervisor" ToRole="Expenses" />
+          <NavigationProperty Name="Expens" Relationship="Self.FK__Superviso__Recei__5070F446" FromRole="Supervisor" ToRole="Expenses" />
+        </EntityType>
+        <Association Name="FK__Expenses__Employ__4BAC3F29">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Expenses" Type="Self.Expens" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="Expenses">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Superviso__Emplo__4F7CD00D">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Supervisor" Type="Self.Supervisor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="Supervisor">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Expenses__Superv__5165187F">
+          <End Role="Supervisor" Type="Self.Supervisor" Multiplicity="0..1" />
+          <End Role="Expenses" Type="Self.Expens" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supervisor">
+              <PropertyRef Name="SupervisorId" />
+            </Principal>
+            <Dependent Role="Expenses">
+              <PropertyRef Name="SupervisorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Superviso__Recei__5070F446">
+          <End Role="Expenses" Type="Self.Expens" Multiplicity="0..1" />
+          <End Role="Supervisor" Type="Self.Supervisor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expenses">
+              <PropertyRef Name="ReceiptNumber" />
+            </Principal>
+            <Dependent Role="Supervisor">
+              <PropertyRef Name="ReceiptNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="anushaDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="Expenses" EntityType="Self.Expens" />
+          <EntitySet Name="Supervisors" EntityType="Self.Supervisor" />
+          <AssociationSet Name="FK__Expenses__Employ__4BAC3F29" Association="Self.FK__Expenses__Employ__4BAC3F29">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Expenses" EntitySet="Expenses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Superviso__Emplo__4F7CD00D" Association="Self.FK__Superviso__Emplo__4F7CD00D">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Supervisor" EntitySet="Supervisors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Expenses__Superv__5165187F" Association="Self.FK__Expenses__Superv__5165187F">
+            <End Role="Supervisor" EntitySet="Supervisors" />
+            <End Role="Expenses" EntitySet="Expenses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Superviso__Recei__5070F446" Association="Self.FK__Superviso__Recei__5070F446">
+            <End Role="Expenses" EntitySet="Expenses" />
+            <End Role="Supervisor" EntitySet="Supervisors" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="anushaDBModelStoreContainer" CdmEntityContainer="anushaDBEntities">
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="anushaDBModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="DateofBirth" ColumnName="DateofBirth" />
+                <ScalarProperty Name="Dateofjoin" ColumnName="Dateofjoin" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Expenses">
+            <EntityTypeMapping TypeName="anushaDBModel.Expens">
+              <MappingFragment StoreEntitySet="Expenses">
+                <ScalarProperty Name="ReceiptNumber" ColumnName="ReceiptNumber" />
+                <ScalarProperty Name="ReceiptDate" ColumnName="ReceiptDate" />
+                <ScalarProperty Name="ReceiptSubmittedDate" ColumnName="ReceiptSubmittedDate" />
+                <ScalarProperty Name="ReceiptAmount" ColumnName="ReceiptAmount" />
+                <ScalarProperty Name="UploadReceipt" ColumnName="UploadReceipt" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="SupervisorId" ColumnName="SupervisorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Supervisors">
+            <EntityTypeMapping TypeName="anushaDBModel.Supervisor">
+              <MappingFragment StoreEntitySet="Supervisor">
+                <ScalarProperty Name="SupervisorId" ColumnName="SupervisorId" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="ReceiptNumber" ColumnName="ReceiptNumber" />
+                <ScalarProperty Name="SupervisorName" ColumnName="SupervisorName" />
+                <ScalarProperty Name="Approve_Reject" ColumnName="Approve_Reject" />
+                <ScalarProperty Name="ApproveDate" ColumnName="ApproveDate" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

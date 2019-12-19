@@ -1,0 +1,74 @@
+﻿@model CloudAssignment.Models.Expens
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Expens</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ReceiptDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReceiptDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReceiptSubmittedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReceiptSubmittedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReceiptAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReceiptAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UploadReceipt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UploadReceipt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee.EmployeeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Supervisor.SupervisorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Supervisor.SupervisorName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ReceiptNumber }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
